@@ -35,6 +35,9 @@
 *.i*86
 *.x86_64
 *.hex
+Colleen
+Grace
+Sully
 
 # Debug files
 *.dSYM/
@@ -50,3 +53,8 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Sully/Trash files
+Sully_*
+*.dif
+*.diff
