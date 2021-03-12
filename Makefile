@@ -6,7 +6,7 @@
 #    By: alagroy- <alagroy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 15:24:02 by alagroy-          #+#    #+#              #
-#    Updated: 2021/03/11 15:52:06 by alagroy-         ###   ########.fr        #
+#    Updated: 2021/03/12 14:43:27 by alagroy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ SRC_DIR = ./srcs/
 SRCC = $(SRC_DIR)$(COLLEEN).c
 SRCG = $(SRC_DIR)$(GRACE).c
 SRCS = $(SRC_DIR)$(SULLY).c
+
+all: $(NAME)
 
 $(COLLEEN): $(SRCC)
 	$(CC) $(CFLAGS) $< -o $@
