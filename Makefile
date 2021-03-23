@@ -6,7 +6,7 @@
 #    By: alagroy- <alagroy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 15:24:02 by alagroy-          #+#    #+#              #
-#    Updated: 2021/03/22 12:49:49 by alagroy-         ###   ########.fr        #
+#    Updated: 2021/03/23 12:45:37 by alagroy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,12 @@ CNAME = $(addprefix $(CDIR), $(FILES))
 ASMNAME = $(addprefix $(ASMDIR), $(FILES))
 PHPNAME = $(addprefix $(PHPDIR), $(FILES))
 
+OBJS = $(addsuffix .o, $(ASMNAME))
+
 CSRCS = $(addprefix $(SRC_DIR), $(addsufix $(FILES), .c))
 
 TRASH_FILES = Grace_kid.c Sully_4.c Sully_4 Sully_3.c Sully_3 Sully_2.c \
-				Sully_2 Sully_1.c Sully_1 Sully_0.c Sully_0
+				Sully_2 Sully_1.c Sully_1 Sully_0.c Sully_0 $(OBJS)
 
 all: $(DIRS) $(NAME)
 
@@ -47,8 +49,7 @@ $(CDIR)%: $(SRC_DIR)%.c
 
 $(ASMDIR)%: $(SRC_DIR)%.s
 	$(ASM) $< -o $@.o
-	# $(LD) $@.o -o $@
-	$(CC) -g $@.o -o $@
+	$(LD) $@.o -o $@
 
 $(DIRS):
 	mkdir -p $(DIRS)

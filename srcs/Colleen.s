@@ -1,7 +1,7 @@
 segment .data ; data
 	data: db "segment .data ; data%c%cdata: db %c%s%c, 0%c%ctext: db %c%s%c, 0%c%cmain: db %c%s%c, 0%c%cprint_code: db %c%s%c, 0%c%c", 0
 	text: db "segment .text%c%cglobal _start%c%cglobal _main%c%cglobal _print_code%c%cextern _printf%c%c_start:%c%ccall _main%c%cret%c%c", 0
-	main: db "_main:%c%cpush rbp%c%cmov rbp, rsp%c%csub rsp, 8%c%cxor rax, rax%c%clea rdi, [rel data]%c%cmov rsi, 0xa%c%cmov rdx, 0x9%c%cmov rcx, 0x22%c%clea r8, [rel data]%c%cmov r9, 0x22%c%clea r10, [rel text]%c%clea r11, [rel main]%c%clea r12, [rel print_code]%c%cpush byte 0xa%c%cpush byte 0xa%c%cpush byte 0x22%c%cpush qword r12%c%cpush byte 0x22%c%cpush byte 0x9%c%cpush byte 0xa%c%cpush byte 0x22%c%cpush qword r11%c%cpush byte 0x22%c%cpush byte 0x9%c%cpush byte 0xa%c%cpush byte 0x22%c%cpush qword r10%c%cpush byte 0x22%c%cpush byte 0x9%c%cpush byte 0xa%c%ccall _printf%c%cxor rax, rax%c%clea rdi, [rel text]%c%cmov rsi, 0xa%c%cmov rdx, 0x9%c%cmov rcx, 0xa%c%cmov r8, 0x9%c%cmov r9, 0xa%c%cpush byte 0xa%c%cpush byte 0xa%c%cpush byte 0x9%c%cpush byte 0xa%c%cpush byte 0x9%c%cpush byte 0xa%c%cpush byte 0xa%c%cpush byte 0xa%c%cpush byte 0x9%c%cpush byte 0xa%c%cpush byte 0x9%c%ccall _printf%c%ccall _print_code%c%cleave%c%cret%c%c", 0
+	main: db "_main:%c%cpush rbp%c%cmov rbp, rsp%c%csub rsp, 8%c%cxor rax, rax%c%clea rdi, [rel data]%c%cmov rsi, 0xa%c%cmov rdx, 0x9%c%cmov rcx, 0x22%c%clea r8, [rel data]%c%cmov r9, 0x22%c%clea r10, [rel text]%c%clea r11, [rel main]%c%clea r12, [rel print_code]%c%cpush byte 0xa%c%cpush byte 0xa%c%cpush byte 0x22%c%cpush qword r12%c%cpush byte 0x22%c%cpush byte 0x9%c%cpush byte 0xa%c%cpush byte 0x22%c%cpush qword r11%c%cpush byte 0x22%c%cpush byte 0x9%c%cpush byte 0xa%c%cpush byte 0x22%c%cpush qword r10%c%cpush byte 0x22%c%cpush byte 0x9%c%cpush byte 0xa%c%ccall _printf%c%cxor rax, rax%c%clea rdi, [rel text]%c%cmov rsi, 0xa%c%cmov rdx, 0x9%c%cmov rcx, 0xa%c%cmov r8, 0x9%c%cmov r9, 0xa%c%cpush byte 0xa%c%cpush byte 0xa%c%cpush byte 0x9%c%cpush byte 0xa%c%cpush byte 0x9%c%cpush byte 0xa%c%cpush byte 0xa%c%cpush byte 0xa%c%cpush byte 0x9%c%cpush byte 0xa%c%cpush byte 0x9%c%ccall _printf%c%ccall _print_code ; displays the code part%c%cleave%c%cret%c%c", 0
 	print_code: db "_print_code:%c%cpush rbp%c%cmov rbp, rsp%c%csub rsp, 8%c%cxor rax, rax%c%clea rdi, [rel main]%c%cmov rsi, 0xa%c%cmov rdx, 0x9%c%cmov r8, 0x9%c%cmov r9, 0xa%c%cpush byte 0xa%c%cpush byte 0xa%c%cmov rcx, 50%c%cline:%c%cpush byte 0x9%c%cpush byte 0xa%c%cloop line%c%cpush byte 0x9%c%cmov rcx, 0xa%c%ccall _printf%c%cxor rax, rax%c%clea rdi, [rel print_code]%c%cmov rsi, 0xa%c%cmov rdx, 0x9%c%cmov r8, 0x9%c%cmov r9, 0xa%c%cpush byte 0xa%c%cmov rcx, 33%c%cline2:%c%cpush byte 0x9%c%cpush byte 0xa%c%cloop line2%c%cpush byte 0x9%c%cmov rcx, 0xa%c%ccall _printf%c%cleave%c%cret%c", 0
 
 segment .text
@@ -65,7 +65,7 @@ _main:
 	push byte 0xa
 	push byte 0x9
 	call _printf
-	call _print_code
+	call _print_code ; displays the code part
 	leave
 	ret
 
