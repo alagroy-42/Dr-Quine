@@ -6,11 +6,11 @@
 #    By: alagroy- <alagroy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 15:24:02 by alagroy-          #+#    #+#              #
-#    Updated: 2021/03/23 12:45:37 by alagroy-         ###   ########.fr        #
+#    Updated: 2021/03/23 17:17:59 by alagroy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = $(CNAME) $(ASMNAME) $(PHPNAME)
+NAME = $(CNAME) $(ASMNAME)
 
 
 COLLEEN = Colleen
@@ -39,8 +39,16 @@ OBJS = $(addsuffix .o, $(ASMNAME))
 
 CSRCS = $(addprefix $(SRC_DIR), $(addsufix $(FILES), .c))
 
-TRASH_FILES = Grace_kid.c Sully_4.c Sully_4 Sully_3.c Sully_3 Sully_2.c \
-				Sully_2 Sully_1.c Sully_1 Sully_0.c Sully_0 $(OBJS)
+SULLY_TRASH_FILES = Sully_0 Sully_1 Sully_2 Sully_3 Sully_4
+SULLY_TRASH = $(addprefix $(CDIR), $(SULLY_TRASH_FILES)) \
+				$(addprefix $(CDIR), $(addsuffix .o, $(SULLY_TRASH_FILES))) \
+				$(addprefix $(CDIR), $(addsuffix .c, $(SULLY_TRASH_FILES))) \
+				$(addprefix $(ASMDIR), $(SULLY_TRASH_FILES)) \
+				$(addprefix $(ASMDIR), $(addsuffix .o, $(SULLY_TRASH_FILES))) \
+				$(addprefix $(ASMDIR), $(addsuffix .s, $(SULLY_TRASH_FILES)))
+
+TRASH_FILES = ./c/Grace_kid.c ./asm/Grace_kid.s $(OBJS) $(SULLY_TRASH)
+
 
 all: $(DIRS) $(NAME)
 
