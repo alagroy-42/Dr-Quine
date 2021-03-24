@@ -6,7 +6,7 @@
 #    By: alagroy- <alagroy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/11 15:24:02 by alagroy-          #+#    #+#              #
-#    Updated: 2021/03/23 17:17:59 by alagroy-         ###   ########.fr        #
+#    Updated: 2021/03/24 12:13:25 by alagroy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,12 @@ SULLY_TRASH = $(addprefix $(CDIR), $(SULLY_TRASH_FILES)) \
 				$(addprefix $(CDIR), $(addsuffix .c, $(SULLY_TRASH_FILES))) \
 				$(addprefix $(ASMDIR), $(SULLY_TRASH_FILES)) \
 				$(addprefix $(ASMDIR), $(addsuffix .o, $(SULLY_TRASH_FILES))) \
-				$(addprefix $(ASMDIR), $(addsuffix .s, $(SULLY_TRASH_FILES)))
+				$(addprefix $(ASMDIR), $(addsuffix .s, $(SULLY_TRASH_FILES))) \
+				$(addprefix $(PHPDIR), $(addsuffix .php, $(SULLY_TRASH_FILES)))
 
-TRASH_FILES = ./c/Grace_kid.c ./asm/Grace_kid.s $(OBJS) $(SULLY_TRASH)
+TRASH_FILES = ./c/Grace_kid.c ./asm/Grace_kid.s ./php/Grace_kid.php \
+				./c/Colleen.diff ./asm/Colleen.diff ./php/Colleen.diff $(OBJS) \
+				$(SULLY_TRASH)
 
 
 all: $(DIRS) $(NAME)
@@ -60,19 +63,17 @@ $(ASMDIR)%: $(SRC_DIR)%.s
 	$(LD) $@.o -o $@
 
 $(DIRS):
-	mkdir -p $(DIRS)
+	mkdir -p $(CDIR) $(ASMDIR)
 
 clean:
 	rm -f $(TRASH_FILES)
 
 fclean: clean
-	rm -rf $(DIRS)
+	rm -rf $(CDIR) $(ASMDIR)
 
 re: fclean all
 
 tests: $(NAME)
-	./Grace; diff srcs/Grace.c Grace_kid.c
-	./Colleen > Colleen.diff ; diff srcs/Colleen.c Colleen.diff
-	./Sully ; diff Sully_0.c srcs/Sully.c || true
+	./test.sh
 
 .PHONY: all fclean clean
